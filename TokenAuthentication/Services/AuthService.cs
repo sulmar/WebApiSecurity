@@ -9,6 +9,8 @@ using TokenAuthentication.Models;
 namespace TokenAuthentication.Services
 {
 
+    // Install-Package Microsoft.AspNet.Identity.Owin
+    // Install-Package Microsoft.AspNet.Identity.EntityFramework
 
     public class AuthService : IAuthService
     {

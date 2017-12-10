@@ -10,6 +10,10 @@ using TokenAuthentication.Providers;
 
 namespace TokenAuthentication
 {
+
+    // Install-Package Microsoft.AspNet.WebApi.Owin
+    // Install-Package Microsoft.Owin.Host.SystemWeb
+
     public class Startup
     {
         public void Configuration(IAppBuilder app)
