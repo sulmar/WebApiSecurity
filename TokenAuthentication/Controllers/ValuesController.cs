@@ -11,6 +11,7 @@ namespace TokenAuthentication.Controllers
         [Authorize]
         public IHttpActionResult Get()
         {
+            // .Identity.Name
             return Ok(new string[] { "value1", "value2" });
         }
 
