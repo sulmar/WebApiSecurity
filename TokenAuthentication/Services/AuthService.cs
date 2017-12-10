@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,12 +8,6 @@ using TokenAuthentication.Models;
 
 namespace TokenAuthentication.Services
 {
-    public interface IAuthService : IDisposable
-    {
-        Task<IdentityResult> Register(User user);
-
-        Task<IdentityUser> FindUser(string userName, string password);
-    }
 
 
     public class AuthService : IAuthService
@@ -40,6 +33,11 @@ namespace TokenAuthentication.Services
         public async Task<IdentityResult> Register(User user)
         {
             IdentityUser identityUser = new IdentityUser(user.UserName);
+
+            if (!string.IsNullOrEmpty(user.Email))
+            {
+                identityUser.Email = user.Email;
+            }
 
             var result = await userManager.CreateAsync(identityUser, user.Password);
 

@@ -136,8 +136,10 @@
     </Compile>
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\ServiceAuthorizationServerProvider.cs" />
     <Compile Include="Providers\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\IAuthService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -21,9 +21,13 @@ namespace TokenAuthentication
 
             
             WebApiConfig.Register(config);
+            // Install-Package Microsoft.Owin.Cors
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
+
+        
+        // Install-Package Microsoft.Owin.Security.OAuth
 
         public void ConfigureOAuth(IAppBuilder app)
         {
@@ -32,7 +36,7 @@ namespace TokenAuthentication
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromHours(1),
-                Provider = new MyAuthorizationServerProvider()  
+                Provider = new ServiceAuthorizationServerProvider()  
             };
 
             // Token Generation
