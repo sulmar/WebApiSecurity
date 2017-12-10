@@ -1,17 +1,20 @@
-﻿using System;
+﻿using BasicAuthentication.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApiSecurity.SSL.Filters;
 
-namespace WebApiSecurity.SSL.Controllers
+namespace BasicAuthentication.Controllers
 {
+    [CustomAuthenticationFilterAttribute] // Enable authentication via an ASP.NET Identity user name and password
+    [Authorize]
+    //[BasicAuthenticationFilter]
     public class ValuesController : ApiController
     {
         // GET api/values
-        [RequireHttps]
+       
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };

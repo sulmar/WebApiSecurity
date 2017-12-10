@@ -4,14 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApiSecurity.SSL.Filters;
 
-namespace WebApiSecurity.SSL.Controllers
+namespace WindowsAuthentication.Controllers
 {
+    [Authorize]
     public class ValuesController : ApiController
     {
         // GET api/values
-        [RequireHttps]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
