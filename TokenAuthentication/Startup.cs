@@ -14,6 +14,8 @@ namespace TokenAuthentication
     {
         public void Configuration(IAppBuilder app)
         {
+            // Install-Package Microsoft.AspNet.Identity.Owin
+
 
             HttpConfiguration config = new HttpConfiguration();
 
