@@ -12,12 +12,39 @@ namespace AuthenticationClient
     {
         static void Main(string[] args)
         {
-            Task.Run(() => BasicAuthenticationTest());
+            BasicAuthenticationTest().Wait();
 
             Console.ReadKey();
         }
 
-        private static async void BasicAuthenticationTest()
+
+        private static async Task WindowsAuthenticationTest()
+        {
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri("http://localhost:49250/");
+
+                var response = await client.GetAsync("api/values");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("{0}", result);
+                }
+                else
+                {
+                    Console.WriteLine("{0}", response.ReasonPhrase);
+                }
+
+            }
+        }
+
+
+
+        private static async Task BasicAuthenticationTest()
         {
             string username = "testuser";
             string password = "Pass1word";
@@ -26,13 +53,11 @@ namespace AuthenticationClient
             {
                 client.BaseAddress = new Uri("http://localhost:62986/");
 
-                var request = new HttpRequestMessage(HttpMethod.Get, "api/values");
-
                 var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}")));
 
                 client.DefaultRequestHeaders.Authorization = authValue;
 
-                var response = await client.SendAsync(request);
+                var response = await client.GetAsync("api/values");
 
                 if (response.IsSuccessStatusCode)
                 {
