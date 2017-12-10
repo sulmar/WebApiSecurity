@@ -13,5 +13,12 @@ namespace TokenAuthentication.Controllers
         {
             return Ok(new string[] { "value1", "value2" });
         }
+
+
+        [Authorize(Roles = "admin")]
+        public IHttpActionResult Get(int id)
+        {
+            return Ok($"value{id}");
+        }
     }
 }
